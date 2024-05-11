@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../app/features/cart/cartSlice";
 
-const ProductCard = ({ title, productItem }) => {
+const ProductCard = ({ title, productItem, id }) => {
   const dispatch = useDispatch();
   const router = useNavigate();
   const handelClick = () => {
@@ -15,6 +15,7 @@ const ProductCard = ({ title, productItem }) => {
     dispatch(addToCart({ product: productItem, num: 1 }));
     toast.success("Product has been added to cart!");
   };
+
   return (
     <Col md={3} sm={5} xs={10} className="product mtop">
       {title === "Big Discount" ? (

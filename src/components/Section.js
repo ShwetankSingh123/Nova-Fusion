@@ -1,8 +1,11 @@
 import { Container, Row } from "react-bootstrap";
 import ProductCard from "./ProductCard/ProductCard";
+// import '../index.css'
 
 const Section = ({ title, bgColor, productItems }) => {
+
   return (
+    <div >
     <section style={{ background: bgColor }}>
       <Container>
         <div className="heading">
@@ -20,7 +23,9 @@ const Section = ({ title, bgColor, productItems }) => {
           })}
         </Row>
       </Container>
+      
     </section>
+    </div>
   );
 };
 

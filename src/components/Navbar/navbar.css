@@ -197,3 +197,10 @@
   }
   
 }
+
+
+button{
+  background-color: rgb(51, 239, 246);
+  padding: 5px;
+  border-radius: 10px;
+}

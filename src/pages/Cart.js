@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   addToCart,
   decreaseQty,
@@ -15,6 +16,7 @@ const Cart = () => {
     (price, item) => price + item.qty * item.price,
     0
   );
+  const { isAuthenticated ,user }=useAuth0();
   useEffect(() => {
     window.scrollTo(0, 0);
     // if(CartItem.length ===0) {
@@ -25,6 +27,14 @@ const Cart = () => {
   return (
     <section className="cart-items">
       <Container>
+      {
+        isAuthenticated && (
+          <div className="cart-user--profile">
+            {/* <img src={user.picture} alt={user.name} /> */}
+            <h4 className="cart-user--name">{user.name}</h4>
+          </div>
+        )
+      }
         <Row className="justify-content-center">
           <Col md={8}>
             {cartList.length === 0 && (
