@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../app/features/cart/cartSlice";
 import "../index.css";
 
-const BookCard = ({ productItem ,imageURL, name, price ,id}) => {
+const BookCard = ({ productItem, imageURL, name, price, id }) => {
   const dispatch = useDispatch();
   const router = useNavigate();
   const handelClick = () => {
@@ -17,7 +17,6 @@ const BookCard = ({ productItem ,imageURL, name, price ,id}) => {
     dispatch(addToCart({ product: productItem, num: 1 }));
     toast.success("Product has been added to cart!");
   };
-
 
   const firebase = useFirebase();
   // const navigate = useNavigate();
@@ -29,7 +28,7 @@ const BookCard = ({ productItem ,imageURL, name, price ,id}) => {
   }, []);
 
   return (
-   <div>
+    <div>
       <Col md={3} sm={5} xs={10} className="product mtop">
         <div class="row">
           <div class="col-sm-6">
@@ -66,7 +65,7 @@ const BookCard = ({ productItem ,imageURL, name, price ,id}) => {
           </div>
         </div>
       </Col>
-      </div>
+    </div>
   );
 };
 

@@ -1,35 +1,34 @@
-import {  useEffect, useState } from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Container, Nav, NavItem, Navbar } from "react-bootstrap";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
+import { useFirebase } from "../../context/Firebase";
+import BookCard from "../../components/Card";
+
 const NavBar = () => {
-  
   const { cartList } = useSelector((state) => state.cart);
   // const [expand, setExpand] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
 
-const[isLoggedIn,setIsLoggedIn]=useState(true);
-const[isLoggedOut,setIsLoggedOut]=useState(false);
-const auth=localStorage.getItem("bredding");
+  const auth = localStorage.getItem("bredding");
 
+  const firebase = useFirebase();
 
+  //  sign Out Functionality
 
-
-//  sign Out Functionality
-
-const handleLogout=(e)=>{
-  const auth = getAuth();
-  signOut(auth).then(() => {
-    // Sign-out successful.
-  }).catch((error) => {
-    // An error happened.
-  });
-  alert("Log Out Successful")
-}
-
-
+  const handleLogout = (e) => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+    alert("Log Out Successful");
+  };
 
   // fixed Header
   function scrollHandler() {
@@ -48,14 +47,11 @@ const handleLogout=(e)=>{
 
   // },[])
 
-
   return (
-
     <Navbar
       fixed="top"
       expand="md"
       className={isFixed ? "navbar fixed" : "navbar"}
-    
     >
       <Container className="navbar-container">
         <Navbar.Brand to="/">
@@ -103,7 +99,8 @@ const handleLogout=(e)=>{
             <span></span>
             <span></span>
           </Navbar.Toggle>
-        </div> 
+        </div>
+
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="justify-content-end flex-grow-1 pe-3">
             <Nav.Item>
@@ -117,18 +114,16 @@ const handleLogout=(e)=>{
               </Link>
             </Nav.Item>
 
-
-           <Nav.Item>
+            <Nav.Item>
               <Link
                 aria-label="Go to Home Page"
                 className="navbar-link"
                 to="/book/list"
                 // onClick={() => setExpand(false)}
               >
-                <span className="nav-link-label">Post Art</span>
+                <span className="nav-link-label">Post</span>
               </Link>
             </Nav.Item>
-         
 
             {/* <Nav.Item>
               <Link
@@ -140,7 +135,6 @@ const handleLogout=(e)=>{
                 <span className="nav-link-label">Orders</span>
               </Link>
             </Nav.Item> */}
-
 
             <Nav.Item>
               <Link
@@ -163,9 +157,6 @@ const handleLogout=(e)=>{
               </Link>
             </Nav.Item>
 
-
-
-
             <Nav.Item>
               <Link
                 aria-label="Go to Cart Page"
@@ -176,8 +167,8 @@ const handleLogout=(e)=>{
                 <span className="nav-link-label">Cart</span>
               </Link>
             </Nav.Item>
-            
-         <Nav.Item>
+
+            <Nav.Item>
               <Link
                 aria-label="Go to Register Page"
                 className="navbar-link"
@@ -189,9 +180,7 @@ const handleLogout=(e)=>{
               </Link>
             </Nav.Item>
 
-         
-
-          <Nav.Item>
+            <Nav.Item>
               <Link
                 aria-label="Go to Login Page"
                 className="navbar-link"
@@ -201,10 +190,9 @@ const handleLogout=(e)=>{
               >
                 <span className="nav-link-label">LogOut</span>
               </Link>
-            </Nav.Item> 
-            
-            
-               <Nav.Item>
+            </Nav.Item>
+
+            <Nav.Item>
               <Link
                 aria-label="Go to Login Page"
                 className="navbar-link"
@@ -216,32 +204,11 @@ const handleLogout=(e)=>{
                 <span className="nav-link-label">LogIn</span>
               </Link>
             </Nav.Item>
-           
-                
 
-
-    
-
-            {/* {
-              isAuthenticated &&  <p>{user.name}</p>
-            }
-            {
-              isAuthenticated ? 
-             <Nav.Item>
-              <Link>
-              <button className="user-log" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Log Out
-              </button>
-              </Link>
-             </Nav.Item>:
-             <Nav.Item>
-              <Link>
-              <button onClick={() => loginWithRedirect()}>Log In</button>
-              </Link>
-             </Nav.Item>
-            } */}
-             
+  
             <Nav.Item className="expanded-cart">
-               <svg
+              <Link to="/profile">
+              <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="black"
@@ -252,7 +219,8 @@ const handleLogout=(e)=>{
                   d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
                   clipRule="evenodd"
                 />
-              </svg> 
+              </svg>
+              </Link>
               <Link
                 aria-label="Go to Cart Page"
                 to="/cart"
@@ -269,6 +237,16 @@ const handleLogout=(e)=>{
                 </svg>
               </Link>
             </Nav.Item>
+            <NavItem>
+              <Link
+                aria-label="Go to Login Page"
+                className="navbar-link"
+                to="/login"
+                // onClick={handleLogin}
+                // onClick={() => setExpand(false)}
+                // onClick={props.login}
+              ></Link>
+            </NavItem>
           </Nav>
         </Navbar.Collapse>
       </Container>

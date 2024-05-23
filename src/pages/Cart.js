@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
+import "../index.css"
 import {
   addToCart,
   decreaseQty,
@@ -24,13 +26,22 @@ const Cart = () => {
     //   setCartItem(JSON.parse(storedCart));
     // }
   }, []);
+
+ const navigate=useNavigate();
+
+ const handleOnCheck=()=>{
+  navigate("/checkout")
+ }
+
+
+
   return (
     <section className="cart-items">
       <Container>
       {
         isAuthenticated && (
           <div className="cart-user--profile">
-            {/* <img src={user.picture} alt={user.name} /> */}
+             <img src={user.picture} alt={user.name} />
             <h4 className="cart-user--name">{user.name}</h4>
           </div>
         )
@@ -94,6 +105,11 @@ const Cart = () => {
                 <h3>${totalPrice}.00</h3>
               </div>
             </div>
+          <div style={{margin:"10px"}}>
+            <button  class="btn btn-primary" onClick={handleOnCheck}>CheckOut Now</button>
+          </div>
+            
+            
           </Col>
         </Row>
       </Container>

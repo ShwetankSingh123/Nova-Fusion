@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { getAuth, signOut } from "firebase/auth";
 
 const LogOut = () => {
@@ -10,6 +10,9 @@ const LogOut = () => {
     // An error happened.
   });
   
+  useEffect(()=>{
+    
+  },[])
 
   return (
     <div>LogOut</div>

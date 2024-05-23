@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../app/features/cart/cartSlice";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ title, productItem, id }) => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const ProductCard = ({ title, productItem, id }) => {
     dispatch(addToCart({ product: productItem, num: 1 }));
     toast.success("Product has been added to cart!");
   };
+
 
   return (
     <Col md={3} sm={5} xs={10} className="product mtop">
@@ -48,6 +50,16 @@ const ProductCard = ({ title, productItem, id }) => {
             onClick={() => handelAdd(productItem)}
           >
             <ion-icon name="add"></ion-icon>
+          </button>
+          <button
+            aria-label="Add"
+            type="submit"
+            className="add"
+            // onClick={() => handelAdd(productItem)}
+            
+          >
+          <Link to="/game"><i class="bi bi-controller"></i></Link>
+           {/* <Link to="http://127.0.0.1:5500/nova_fusion/Game/index.html"><i class="bi bi-controller"></i></Link> */}
           </button>
         </div>
       </div>

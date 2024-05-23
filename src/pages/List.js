@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
 import { useFirebase } from "../context/Firebase";
+import { Link } from "react-router-dom";
+
 
 const ListingPage = () => {
   const firebase = useFirebase();
@@ -12,13 +13,19 @@ const ListingPage = () => {
   const [price, setPrice] = useState("");
   const [coverPic, setCoverPic] = useState("");
 
+ 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await firebase.handleCreateNewListing(name, isbnNumber, price, coverPic);
   };
 
+  const handleonNavigate=()=>{
+    alert("Post Successful");
+   
+  }
+
   return (
- 
     <section
       className="h-100 gradient-form"
       style={{ backgroundColor: "#eee" }}
@@ -39,13 +46,13 @@ const ListingPage = () => {
                       <h4 className="mt-1 mb-5 pb-1">Welcome to Nova-Fusion</h4>
                     </div>
                     <form onSubmit={handleSubmit}>
-                      <p>Please Enter Valid Email</p>
+                    
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Enter Art Name</Form.Label>
                         <Form.Control
                           onChange={(e) => setName(e.target.value)}
                           value={name}
-                          type="text"
+                          type="email"
                           placeholder="Art name"
                         />
                       </Form.Group>
@@ -58,7 +65,7 @@ const ListingPage = () => {
                         <Form.Control
                           onChange={(e) => setIsbnNumber(e.target.value)}
                           value={isbnNumber}
-                          type="text"
+                          type="number"
                           placeholder="Art ID"
                         />
                       </Form.Group>
@@ -71,7 +78,7 @@ const ListingPage = () => {
                         <Form.Control
                           onChange={(e) => setPrice(e.target.value)}
                           value={price}
-                          type="text"
+                          type="number"
                           placeholder="Enter Price"
                         />
                       </Form.Group>
@@ -86,8 +93,8 @@ const ListingPage = () => {
                           type="file"
                         />
                       </Form.Group>
-                      <Button variant="primary" type="submit">
-                        Post
+                      <Button variant="primary" type="submit" onClick={handleonNavigate}>
+                      <Link to="/" style={{color:"white", textDecoration:"none"}}>Post</Link>
                       </Button>
                     </form>
                   </div>

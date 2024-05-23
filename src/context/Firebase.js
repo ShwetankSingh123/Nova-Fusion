@@ -17,10 +17,13 @@ import {
   doc,
   query,
   where,
+  
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const FirebaseContext = createContext(null);
+
+//Connect to database
 
 const firebaseConfig = {
   apiKey: "AIzaSyAVtFuWC7LjElHbVzTZ0HkaEPJC02-n8nE",
@@ -34,9 +37,13 @@ const firebaseConfig = {
 export const useFirebase = () => useContext(FirebaseContext);
 
 const firebaseApp = initializeApp(firebaseConfig);
-const firebaseAuth = getAuth(firebaseApp);
+export const firebaseAuth = getAuth(firebaseApp);
 const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
+export const db=getFirestore(firebaseApp);
+
+
+//Firebase Authentication
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -55,6 +62,8 @@ export const FirebaseProvider = (props) => {
 
   const singinUserWithEmailAndPass = (email, password) =>
     signInWithEmailAndPassword(firebaseAuth, email, password);
+
+
 
   const signinWithGoogle = () => signInWithPopup(firebaseAuth, googleProvider);
 
@@ -136,3 +145,5 @@ export const FirebaseProvider = (props) => {
     </FirebaseContext.Provider>
   );
 };
+
+export default firebaseApp;

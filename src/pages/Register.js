@@ -1,105 +1,166 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+const Register = () => {
 
-import { useFirebase } from "../context/Firebase";
+const navigate =useNavigate();
 
-const RegisterPage = () => {
-  const firebase = useFirebase();
-  const navigate = useNavigate();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    if (firebase.isLoggedIn) {
-      // navigate to home
-      navigate("/");
-    }
-  }, [firebase, navigate]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Signin up a user...");
-    const result = await firebase.signupUserWithEmailAndPassword(
-      email,
-      password
-    );
-    console.log("Successfull", result);
-  };
 
   return (
-    <section
-      className="h-100 gradient-form"
-      style={{ backgroundColor: "#eee" }}
-    >
-      <div className="container pb-4 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-xl-10">
-            <div className="card rounded-3 text-black">
-              <div className="row g-0">
-                <div className="col-lg-6">
-                  <div className="card-body p-md-5 mx-md-4">
-                    <div className="text-center">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                        style={{ width: 185 }}
-                        alt="logo"
-                      />
-                      <h4 className="mt-1 mb-5 pb-1">Welcome to Nova-Fusion</h4>
-                    </div>
-                    <form onSubmit={handleSubmit}>
-                      <p>Please Enter Valid Email</p>
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control
-                          onChange={(e) => setEmail(e.target.value)}
-                          value={email}
-                          type="email"
-                        />
-                        <Form.Text className="text-muted">
-                          We'll never share your email with anyone else.
-                        </Form.Text>
-                      </Form.Group>
-
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicPassword"
-                      >
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                          onChange={(e) => setPassword(e.target.value)}
-                          value={password}
-                          type="password"
-                          placeholder="Password"
-                        />
-                      </Form.Group>
-                      <Button variant="primary" type="submit">
-                        Create Account
-                      </Button>
-                    </form>
+    <div>
+      <section
+        className="w-100 px-4 py-5"
+        style={{ backgroundColor: "#9de2ff", borderRadius: ".5rem .5rem 0 0" }}
+      >
+        <div className="row d-flex justify-content-center">
+          <div className="col col-md-9 col-lg-7 col-xl-6">
+            <div className="card" style={{ borderRadius: 15 }}>
+              <div className="card-body p-4">
+                <div className="d-flex">
+                  <div className="flex-shrink-0">
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKOZW0_OyKI0zr82enQQ5DTMRyANYOW41bNQ&s"
+                      alt=""
+                      className="img-fluid"
+                      style={{ width: 180, borderRadius: 10 }}
+                    />
                   </div>
-                </div>
-                <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
-                  <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                    <h4 className="mb-4">We are more than just a company</h4>
-                    <p className="small mb-0">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
+                  <div className="flex-grow-1 ms-3">
+                    <h5 className="mb-1">Register Now</h5>
+                    <p className="mb-2 pb-1">As a Artist</p>
+                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2 bg-body-tertiary">
+                    <p className="mb-2 pb-1">Welcome to Nova-Fusion</p>
+                    </div>
+                    <div className="d-flex pt-1">
+                      <button
+                        type="button"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        className="btn btn-outline-primary me-1 flex-grow-1"
+                        onClick={()=>navigate("/artist")}
+                      >
+                        Sign Up
+                      </button>
+                      <button
+                        type="button"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        className="btn btn-primary flex-grow-1"
+                        onClick={()=>navigate("/login")}
+                      >
+                        Sign In
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section
+        className="w-100 px-4 py-5"
+        style={{ backgroundColor: "#e9e5ee", borderRadius: ".5rem .5rem 0 0" }}
+      >
+        <div className="row d-flex justify-content-center">
+          <div className="col col-md-9 col-lg-7 col-xl-6">
+            <div className="card" style={{ borderRadius: 15 }}>
+              <div className="card-body p-4">
+                <div className="d-flex">
+                  <div className="flex-shrink-0">
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO5m2iAQs8GsRUYQaRMql0Oc9gneec0jze5Q&s"
+                      width="100px"
+                      alt=""
+                      className="img-fluid"
+                      style={{ width: 180, borderRadius: 10 }}
+                    />
+                  </div>
+                  <div className="flex-grow-1 ms-3">
+                    <h5 className="mb-1">Register Now</h5>
+                    <p className="mb-2 pb-1">As a Buyer</p>
+                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2 bg-body-tertiary">
+                    <p className="mb-2 pb-1">Welcome to Nova-Fusion</p>
+                    </div>
+                    <div className="d-flex pt-1">
+                      <button
+                        type="button"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        className="btn btn-outline-primary me-1 flex-grow-1"
+                        onClick={()=>navigate("/buyer")}
+                      >
+                        Sign Up
+                      </button>
+                      <button
+                        type="button"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        className="btn btn-primary flex-grow-1"
+                        onClick={()=>navigate("/login")}
+                      >
+                        Sign In
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        className="w-100 px-4 py-5"
+        style={{ backgroundColor: "#9de2ff", borderRadius: ".5rem .5rem 0 0" }}
+      >
+        <div className="row d-flex justify-content-center">
+          <div className="col col-md-9 col-lg-7 col-xl-6">
+            <div className="card" style={{ borderRadius: 15 }}>
+              <div className="card-body p-4">
+                <div className="d-flex">
+                  <div className="flex-shrink-0">
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZxJRzN4-7Vc_cyrHayuKb7ghnp_9DWRcqbQ&ss"
+                      alt="Generic placeholder"
+                      className="img-fluid"
+                      style={{ width: 180, borderRadius: 10 }}
+                    />
+                  </div>
+                  <div className="flex-grow-1 ms-3">
+                    <h5 className="mb-1">Register Now</h5>
+                    <p className="mb-2 pb-1">As a User</p>
+                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2 bg-body-tertiary">
+                    <p className="mb-2 pb-1">Welcome to Nova-Fusion</p>
+                    </div>
+                    <div className="d-flex pt-1">
+                      <button
+                        type="button"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        className="btn btn-outline-primary me-1 flex-grow-1"
+                        onClick={()=>navigate("/user")}
+                      >
+                        Sign Up
+                      </button>
+                      <button
+                        type="button"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        className="btn btn-primary flex-grow-1"
+                        onClick={()=>navigate("/login")}
+                      >
+                        Sign In
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
-export default RegisterPage;
+export default Register;
